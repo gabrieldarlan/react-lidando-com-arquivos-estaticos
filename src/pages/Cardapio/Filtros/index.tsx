@@ -1,25 +1,25 @@
-import React from 'react'
-import filtros from './filtros.json'
-import styles from './Filtros.module.scss'
-import classNames from 'classnames'
+import React from 'react';
+import filtros from './filtros.json';
+import styles from './Filtros.module.scss';
+import classNames from 'classnames';
 // interface IOpcao {
 //   label: string
 //   id: number
 // }
 
-type IOpcao = typeof filtros[0]
+type IOpcao = typeof filtros[0];
 interface Props {
-  filtro: number | null
-  setFiltro: React.Dispatch<React.SetStateAction<number | null>>
+  filtro: number | null;
+  setFiltro: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export default function Filtros({ filtro, setFiltro }: Props) {
   function selecionarFiltro(opcao: IOpcao) {
     if (filtro === opcao.id) {
-      return setFiltro(null)
+      return setFiltro(null);
     }
 
-    return setFiltro(opcao.id)
+    return setFiltro(opcao.id);
   }
   return (
     <div className={styles.filtros}>
@@ -36,5 +36,5 @@ export default function Filtros({ filtro, setFiltro }: Props) {
         </button>
       ))}
     </div>
-  )
+  );
 }
