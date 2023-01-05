@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable indent */
+import { useEffect, useState } from 'react';
 
-import cardapio from './itens.json';
+import cardapio from 'data/cardapio.json';
+import { Cardapio } from 'types/Prato';
 import Item from './Item';
 import styles from './Itens.module.scss';
 
 interface Props {
-  busca: string
-  filtro: number | null
-  ordenador: string
+  busca: string;
+  filtro: number | null;
+  ordenador: string;
 }
 
 export default function Itens(props: Props) {
@@ -26,21 +28,22 @@ export default function Itens(props: Props) {
     return true;
   }
 
-  function ordenar(novaLista: typeof cardapio) {
+  function ordenar(novaLista: Cardapio) {
     switch (ordenador) {
-    case 'porcao':
-      return ordenarPropriedadeCrescente(novaLista, 'size');
-    case 'qtd_pessoas':
-      return ordenarPropriedadeCrescente(novaLista, 'serving');
-    case 'preco':
-      return ordenarPropriedadeCrescente(novaLista, 'price');
-    default:
-      return novaLista;
+      // eslint-disable-next-line indent
+      case 'porcao':
+        return ordenarPropriedadeCrescente(novaLista, 'size');
+      case 'qtd_pessoas':
+        return ordenarPropriedadeCrescente(novaLista, 'serving');
+      case 'preco':
+        return ordenarPropriedadeCrescente(novaLista, 'price');
+      default:
+        return novaLista;
     }
   }
 
   const ordenarPropriedadeCrescente = (
-    lista: typeof cardapio,
+    lista: Cardapio,
     propriedade: 'size' | 'serving' | 'price'
   ) => {
     return lista.sort((a, b) => (a[propriedade] > b[propriedade] ? 1 : -1));
